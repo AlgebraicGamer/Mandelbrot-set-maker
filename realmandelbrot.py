@@ -18,9 +18,9 @@ def e():
 def d():
     larriusdarius.pendown()
 def u():
-    larriusdarius.penup()
+    larriusdarius.penup() #shortening functions
 u()
-def sequence (testpointreal, testpointimaginary, zsquaredreal, zsquaredimaginary, iterations):
+def sequence (testpointreal, testpointimaginary, zsquaredreal, zsquaredimaginary, iterations): #recursively runs the mandelbrot set on (testpointreal, testpointimaginary)
     x=zsquaredreal**2 - zsquaredimaginary**2 + testpointreal
     y=2*zsquaredreal*zsquaredimaginary + testpointimaginary
     zsquaredreal=x
@@ -32,9 +32,7 @@ def sequence (testpointreal, testpointimaginary, zsquaredreal, zsquaredimaginary
             return sequence (testpointreal, testpointimaginary, zsquaredreal, zsquaredimaginary, iterations-1)
         else:
             return True
-c((0, 0, 0))
-print (sequence(2, 2, 0, 0, 50))
-def mandelbrot (n, quality):
+def mandelbrot (n, quality): #n is the number of iterations, and quality is the pixel size - inversely proportional to the actual quality
     for x in range (int(-932/quality), int(932/quality)):
         for y in range (int(-932/quality), 1):
             if sequence (x*quality/466, y*quality/466, 0, 0, n):
@@ -46,7 +44,7 @@ def mandelbrot (n, quality):
                     r(90)
                 u()
                 e()
-                larriusdarius.goto(x*quality+400, -1*y*quality)
+                larriusdarius.goto(x*quality+400, -1*y*quality) #reflects each pixel, works because the mandelbrot set is symmetrical about the x-axis
                 d()
                 b()
                 for i in range (4):
@@ -54,6 +52,5 @@ def mandelbrot (n, quality):
                     r(90)
                 u()
                 e()
-mandelbrot (100, 5)
 turtle.update()
 turtle.done()
